@@ -1,0 +1,72 @@
+<view class="page-shell">
+  <view class="hero" wx:if="{{user}}">
+    <text class="hero-kicker">YOUR TRUST LAYER</text>
+    <view class="hero-title">{{user.nickname || '还没填写昵称'}}</view>
+    <view class="hero-subtitle">
+      当前用户分层：{{level}}。参与记录不是为了炫耀，是为了让组织端知道你已经来过、值得被更稳地承接。
+    </view>
+    <view class="pill-row section">
+      <text class="pill" wx:for="{{user.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <button class="secondary-btn" bindtap="handleEditProfile">修改我的标签</button>
+  </view>
+
+  <view class="section" wx:if="{{summary}}">
+    <view class="section-title">运营概览</view>
+    <view class="section-desc">把原后台的轻量视图并到这里，保留你自己的状态，也保留活动面的判断。</view>
+    <view class="metric-grid section">
+      <view class="glass-card metric-card">
+        <view class="metric-value">{{summary.eventCount}}</view>
+        <view class="metric-label">活动数</view>
+      </view>
+      <view class="glass-card metric-card">
+        <view class="metric-value">{{summary.signupCount}}</view>
+        <view class="metric-label">报名数</view>
+      </view>
+      <view class="glass-card metric-card">
+        <view class="metric-value">{{summary.activeLevel}}</view>
+        <view class="metric-label">当前等级</view>
+      </view>
+      <view class="glass-card metric-card">
+        <view class="metric-value">{{summary.city}}</view>
+        <view class="metric-label">主要城市</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">历史参与</view>
+    <view class="section-desc">系统会自动沉淀活动记录，便于后续分层和复购判断。</view>
+  </view>
+
+  <view class="empty-state glass-card" wx:if="{{!records.length}}">
+    你还没有报名记录，先去活动页选一个适合今晚的局。
+  </view>
+
+  <block wx:for="{{records}}" wx:key="id">
+    <view class="record-card glass-card">
+      <view class="record-title">{{item.eventTitle}}</view>
+      <view class="record-meta">{{item.barName}} · {{item.startTime}}</view>
+      <view class="record-status">{{item.status}}</view>
+    </view>
+  </block>
+
+  <view class="section">
+    <view class="section-title">活动视图</view>
+    <view class="section-desc">这里保留原后台里最有用的部分：每场局的报名和标签。</view>
+  </view>
+
+  <block wx:for="{{events}}" wx:key="id">
+    <view class="admin-card glass-card">
+      <view class="admin-title">{{item.title}}</view>
+      <view class="admin-meta">{{item.barName}} · {{item.dateText}} {{item.startTime}}</view>
+      <view class="admin-meta">已上车 {{item.joinedCount}} / {{item.capacity}}</view>
+      <view class="pill-row admin-tags">
+        <text class="pill" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </block>
+</view>

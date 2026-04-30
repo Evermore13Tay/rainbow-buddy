@@ -1,0 +1,68 @@
+<view class="page-shell">
+  <view class="hero">
+    <text class="hero-kicker">HOST YOUR OWN NIGHT</text>
+    <view class="hero-title">自己发一局，把朋友和折扣一起凑出来。</view>
+    <view class="hero-subtitle">
+      规则固定：满 4 人全体 9 折、组局人 5 折；满 7 人全体升级到 8.5 折，组局人仍是 5 折。
+    </view>
+  </view>
+
+  <view class="field">
+    <text class="field-label">局名称</text>
+    <input class="field-input" data-field="title" value="{{form.title}}" bindinput="handleInput" placeholder="比如：周五微醺先喝一杯" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">酒吧名称</text>
+    <input class="field-input" data-field="barName" value="{{form.barName}}" bindinput="handleInput" placeholder="填写酒吧或集合地" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">区域</text>
+    <input class="field-input" data-field="district" value="{{form.district}}" bindinput="handleInput" placeholder="比如：静安 / 黄浦 / 徐汇" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">日期</text>
+    <input class="field-input" data-field="dateText" value="{{form.dateText}}" bindinput="handleInput" placeholder="比如：4月25日" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">时间</text>
+    <input class="field-input" data-field="startTime" value="{{form.startTime}}" bindinput="handleInput" placeholder="比如：21:00" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">氛围描述</text>
+    <input class="field-input" data-field="atmosphere" value="{{form.atmosphere}}" bindinput="handleInput" placeholder="比如：轻社交 / 新人友好 / 不催酒" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">消费说明</text>
+    <input class="field-input" data-field="priceText" value="{{form.priceText}}" bindinput="handleInput" placeholder="比如：人均 80 左右" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">局介绍</text>
+    <textarea class="field-input text-area" data-field="description" value="{{form.description}}" bindinput="handleInput" placeholder="说清楚这局适合谁、节奏如何、为什么值得上车" placeholder-style="color:#8A8A8A" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">标签</text>
+    <view class="pill-row">
+      <text
+        class="pill {{form.tags.indexOf(item) > -1 ? 'active' : ''}}"
+        wx:for="{{tags}}"
+        wx:key="*this"
+        data-tag="{{item}}"
+        bindtap="handleTagToggle"
+      >
+        {{item}}
+      </text>
+    </view>
+  </view>
+
+  <view class="section">
+    <button class="primary-btn" bindtap="handleSubmit">创建并生成分享链接</button>
+  </view>
+</view>

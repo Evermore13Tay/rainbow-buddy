@@ -1,0 +1,116 @@
+<view class="page-shell">
+  <view class="hero">
+    <text class="hero-kicker">RAINBOW PRE-DRINK</text>
+    <view class="hero-title">先决定去哪，再决定今晚和谁一起。</view>
+    <view class="hero-subtitle">
+      把选择成本降到最低，把尴尬感留在门外。官方局可直接报名，也可以自己发起一局把人凑起来。
+    </view>
+    <view class="hero-stage">
+      <view class="crowd-core"></view>
+      <view class="crowd-member member-a"><text class="crowd-glyph">男</text></view>
+      <view class="crowd-member member-b"><text class="crowd-glyph">男</text></view>
+      <view class="crowd-member member-c"><text class="crowd-glyph">男</text></view>
+      <view class="crowd-member member-d"><text class="crowd-glyph">男</text></view>
+      <view class="crowd-member member-e"><text class="crowd-glyph">男</text></view>
+      <view class="crowd-member member-f"><text class="crowd-glyph">男</text></view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">两种上车方式</view>
+    <view class="feature-strip">
+      <view class="glass-card feature-card">
+        <view class="feature-title">官方局</view>
+        <view class="feature-desc">适合直接选一场加入，默认已有基础氛围和组织承接。</view>
+      </view>
+      <view class="glass-card feature-card" bindtap="handleCreate">
+        <view class="feature-title">自己组局</view>
+        <view class="feature-desc">你发起，朋友上车。满 4 人先 9 折，满 7 人全体 8.5 折，组局人始终 5 折。</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">官方局</view>
+    <view class="section-desc">默认优先给你可直接报名的活动。</view>
+  </view>
+
+  <block wx:for="{{officialEvents}}" wx:key="id">
+    <view class="event-card glass-card" data-id="{{item.id}}" bindtap="handleOpenDetail">
+      <view class="event-head">
+        <view>
+          <view class="event-kicker">{{item.barName}} · {{item.district}}</view>
+          <view class="event-title">{{item.title}}</view>
+        </view>
+        <view class="event-date">{{item.dateText}}</view>
+      </view>
+      <view class="event-meta">{{item.startTime}} · {{item.priceText}}</view>
+      <view class="event-meta">{{item.atmosphere}}</view>
+      <view class="event-discount">{{item.discountDisplay.benefit}}</view>
+      <view class="pill-row event-tags">
+        <text class="pill" wx:for="{{item.tags}}" wx:key="*this">#{{item}}</text>
+      </view>
+      <view class="event-foot">
+        <view>
+          <view class="avatar-row">
+            <view
+              class="avatar-chip"
+              wx:for="{{item.avatarPreview}}"
+              wx:key="id"
+              style="background: {{item.color}};"
+            >
+              {{item.label}}
+            </view>
+            <text class="avatar-more" wx:if="{{item.avatarExtraCount}}">+{{item.avatarExtraCount}}</text>
+          </view>
+          <view class="event-people">{{item.joinedCount}} 人已上车 · 剩余 {{item.remaining}} 位</view>
+        </view>
+        <view class="event-cta">一起去</view>
+      </view>
+    </view>
+  </block>
+
+  <view class="section">
+    <view class="section-title">大家正在组的局</view>
+    <view class="section-desc">你也可以发起自己的局，把折扣和熟人感一起凑出来。</view>
+  </view>
+
+  <view class="empty-state glass-card" wx:if="{{!customEvents.length}}">
+    还没有人发起自组局。你可以做第一个组局人，把链接发出去拉人上车。
+  </view>
+
+  <block wx:for="{{customEvents}}" wx:key="id">
+    <view class="event-card glass-card" data-id="{{item.id}}" bindtap="handleOpenDetail">
+      <view class="event-head">
+        <view>
+          <view class="event-kicker">自组局 · {{item.hostName}}</view>
+          <view class="event-title">{{item.title}}</view>
+        </view>
+        <view class="event-date">{{item.dateText}}</view>
+      </view>
+      <view class="event-meta">{{item.barName}} · {{item.district}} · {{item.startTime}}</view>
+      <view class="event-meta">{{item.atmosphere}}</view>
+      <view class="event-discount">{{item.discountDisplay.status}} · {{item.discountDisplay.benefit}}</view>
+      <view class="pill-row event-tags">
+        <text class="pill" wx:for="{{item.tags}}" wx:key="*this">#{{item}}</text>
+      </view>
+      <view class="event-foot">
+        <view>
+          <view class="avatar-row">
+            <view
+              class="avatar-chip"
+              wx:for="{{item.avatarPreview}}"
+              wx:key="id"
+              style="background: {{item.color}};"
+            >
+              {{item.label}}
+            </view>
+            <text class="avatar-more" wx:if="{{item.avatarExtraCount}}">+{{item.avatarExtraCount}}</text>
+          </view>
+          <view class="event-people">{{item.joinedCount}} 人已上车 · 剩余 {{item.remaining}} 位</view>
+        </view>
+        <view class="event-cta">看详情</view>
+      </view>
+    </view>
+  </block>
+</view>

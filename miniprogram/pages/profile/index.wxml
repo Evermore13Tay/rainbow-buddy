@@ -1,0 +1,45 @@
+<view class="page-shell">
+  <view class="hero">
+    <text class="hero-kicker">FIRST STEP</text>
+    <view class="hero-title">先留一点点信息，再把你送进今晚的群。</view>
+    <view class="hero-subtitle">
+      我们只收最小必要信息，用来降低陌生感，不做匹配，也不做公开主页。
+    </view>
+  </view>
+
+  <view class="field">
+    <text class="field-label">昵称</text>
+    <input class="field-input" placeholder="怎么称呼你" placeholder-style="color:#8A8A8A" data-field="nickname" value="{{form.nickname}}" bindinput="handleInput" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">年龄段</text>
+    <picker range="{{ageOptions}}" bindchange="handleAgeChange">
+      <view class="field-input picker-text">{{form.ageRange}}</view>
+    </picker>
+  </view>
+
+  <view class="field">
+    <text class="field-label">城市</text>
+    <input class="field-input" placeholder="你常在哪个城市活动" placeholder-style="color:#8A8A8A" data-field="city" value="{{form.city}}" bindinput="handleInput" />
+  </view>
+
+  <view class="field">
+    <text class="field-label">给自己打几个标签</text>
+    <view class="pill-row">
+      <text
+        class="pill {{form.tags.indexOf(item) > -1 ? 'active' : ''}}"
+        wx:for="{{tags}}"
+        wx:key="*this"
+        data-tag="{{item}}"
+        bindtap="handleTagToggle"
+      >
+        {{item}}
+      </text>
+    </view>
+  </view>
+
+  <view class="section">
+    <button class="primary-btn" bindtap="handleSubmit">保存并报名</button>
+  </view>
+</view>

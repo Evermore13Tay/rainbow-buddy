@@ -1,0 +1,91 @@
+<view class="page-shell" wx:if="{{event}}">
+  <view class="hero">
+    <text class="hero-kicker">{{event.barName}} · {{event.district}}</text>
+    <view class="hero-title">{{event.title}}</view>
+    <view class="hero-subtitle">{{event.description}}</view>
+  </view>
+
+  <view class="created-banner glass-card" wx:if="{{created}}">
+    这场局已经创建成功。下一步直接分享，把朋友拉上车，人数和折扣会自动往上跳。
+  </view>
+
+  <view class="detail-card glass-card">
+    <view class="detail-row">
+      <text class="detail-label">时间</text>
+      <text class="detail-value">{{event.dateText}} {{event.startTime}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">消费</text>
+      <text class="detail-value">{{event.priceText}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">氛围</text>
+      <text class="detail-value">{{event.atmosphere}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">报名</text>
+      <text class="detail-value">{{event.joinedCount}} / {{event.capacity}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">优惠</text>
+      <text class="detail-value">{{event.discountDisplay.benefit}}</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">当前上车人数</view>
+    <view class="detail-card glass-card">
+      <view class="avatar-row">
+        <view
+          class="avatar-chip"
+          wx:for="{{event.avatarPreview}}"
+          wx:key="id"
+          style="background: {{item.color}};"
+        >
+          {{item.label}}
+        </view>
+        <text class="avatar-more" wx:if="{{event.avatarExtraCount}}">+{{event.avatarExtraCount}}</text>
+      </view>
+      <view class="boarding-copy">{{event.joinedCount}} 人已上车，{{event.discountDisplay.status}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">人群标签</view>
+    <view class="pill-row section">
+      <text class="pill" wx:for="{{event.tags}}" wx:key="*this">#{{item}}</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">参与规则</view>
+    <view class="rules glass-card">
+      <view class="rule-item" wx:for="{{event.rules}}" wx:key="*this">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">群承接说明</view>
+    <view class="group-hint glass-card">{{event.groupHint}}</view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">组局分享</view>
+    <view class="share-card glass-card">
+      <view class="share-copy">
+        分享这场局把人拉上车。链接打开后会直达当前活动详情，报名人数和优惠进度会同步更新。
+      </view>
+      <view class="share-path">{{event.sharePath}}</view>
+      <view class="share-actions">
+        <button class="secondary-btn share-btn" bindtap="handleCopyLink">复制链接</button>
+        <button class="primary-btn share-btn" open-type="share">立即分享</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="cta-bar">
+    <button class="primary-btn" bindtap="handleSignup" disabled="{{joined || event.remaining === 0}}">
+      {{joined ? '已报名，等你进群' : (event.remaining === 0 ? '名额已满' : '我要一起去')}}
+    </button>
+  </view>
+</view>

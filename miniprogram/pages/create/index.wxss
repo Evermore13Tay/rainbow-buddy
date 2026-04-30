@@ -1,0 +1,4 @@
+.text-area {
+  min-height: 180rpx;
+  padding-top: 24rpx;
+}

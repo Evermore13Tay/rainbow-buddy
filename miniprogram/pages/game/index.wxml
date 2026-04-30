@@ -1,0 +1,81 @@
+<view class="page-shell game-page">
+  <view class="hero">
+    <text class="hero-kicker">DRINKING GAME</text>
+    <view class="hero-title">点一个老头，看看今晚谁喝。</view>
+    <view class="hero-subtitle">
+      16 个里只有 1 个是真的。点到假的会爆一下或给你献花，点到真的，全场酒杯直接飞过来。
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">规则很简单</view>
+    <view class="section-desc">轮流点，谁点中真的老头，谁喝。弹窗出现后点任意位置重新一局。</view>
+  </view>
+
+  <view class="game-grid">
+    <block wx:for="{{cells}}" wx:key="id">
+      <view
+        class="game-cell glass-card {{item.isRemoved ? 'removed' : ''}} {{item.isShaking ? 'shaking' : ''}} {{item.isClicked && item.isReal ? 'hit-real' : ''}}"
+        data-index="{{index}}"
+        bindtap="handleCellTap"
+      >
+        <view class="stage-glow"></view>
+        <view class="old-man-figure">
+          <view class="old-man-hair"></view>
+          <view class="old-man-head"></view>
+          <view class="old-man-jaw"></view>
+          <view class="old-man-glasses"></view>
+          <view class="old-man-body"></view>
+          <view class="old-man-jacket-shine"></view>
+          <view class="old-man-leg left"></view>
+          <view class="old-man-leg right"></view>
+          <view class="old-man-cane"></view>
+        </view>
+        <view class="reaction-boom" wx:if="{{item.reaction === 'boom'}}">
+          <view class="boom-core"></view>
+          <view class="boom-ring"></view>
+          <view class="boom-spark spark-a"></view>
+          <view class="boom-spark spark-b"></view>
+          <view class="boom-spark spark-c"></view>
+        </view>
+        <view class="reaction-flower" wx:if="{{item.reaction === 'flower'}}" style="animation-delay: {{item.flowerDelay}};">
+          <view class="petal petal-a"></view>
+          <view class="petal petal-b"></view>
+          <view class="petal petal-c"></view>
+          <view class="petal petal-d"></view>
+          <view class="flower-core"></view>
+          <view class="flower-stem"></view>
+        </view>
+        <view class="reaction-cheers" wx:if="{{item.reaction === 'cheers'}}">
+          <view class="mini-cup left"></view>
+          <view class="mini-cup right"></view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="panorama-mask" wx:if="{{hitPanorama}}">
+    <view class="panorama-flash"></view>
+    <view class="cup-flight cup-left">
+      <view class="cup-bowl"></view>
+      <view class="cup-stem"></view>
+    </view>
+    <view class="cup-flight cup-right">
+      <view class="cup-bowl"></view>
+      <view class="cup-stem"></view>
+    </view>
+    <view class="collision-burst">
+      <view class="burst-ring"></view>
+      <view class="burst-star star-a"></view>
+      <view class="burst-star star-b"></view>
+      <view class="burst-star star-c"></view>
+    </view>
+  </view>
+
+  <view class="result-mask" wx:if="{{showResult}}" catchtap="handleOverlayTap">
+    <view class="result-panel glass-card">
+      <view class="result-title">{{resultText}}</view>
+      <view class="result-desc">点击任意位置，重新一局</view>
+    </view>
+  </view>
+</view>

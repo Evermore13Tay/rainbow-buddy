@@ -1,0 +1,42 @@
+<view class="page-shell" wx:if="{{event && user}}">
+  <view class="success-panel glass-card">
+    <view class="success-mark">✓</view>
+    <view class="success-title">今晚有人一起了</view>
+    <view class="success-desc">
+      {{user.nickname}}，你已经报名 {{event.title}}。接下来只需要进群，等定位和集合点。
+    </view>
+  </view>
+
+  <view class="detail-card glass-card">
+    <view class="detail-row">
+      <text class="detail-label">活动</text>
+      <text class="detail-value">{{event.title}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">时间</text>
+      <text class="detail-value">{{event.dateText}} {{event.startTime}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">酒吧</text>
+      <text class="detail-value">{{event.barName}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">当前累计参与</text>
+      <text class="detail-value">{{recordCount}} 场</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">入群方式</view>
+    <view class="group-hint glass-card">
+      1. 添加组织人微信或扫码进群
+      2. 群内会发具体定位、集合点和当晚提示
+      3. 到店后报“彩虹搭子”即可被带位
+    </view>
+  </view>
+
+  <view class="section">
+    <button class="primary-btn" bindtap="handleViewRecords">查看我的参与记录</button>
+    <button class="secondary-btn secondary-action" bindtap="handleBackHome">继续看看别的局</button>
+  </view>
+</view>

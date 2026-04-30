@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/game/index",
+    "pages/create/index",
+    "pages/event-detail/index",
+    "pages/profile/index",
+    "pages/success/index",
+    "pages/records/index",
+    "pages/admin/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "彩虹搭子",
+    "navigationBarBackgroundColor": "#0D0D0D",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0D0D0D",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#8A8A8A",
+    "selectedColor": "#7A5CFF",
+    "backgroundColor": "#0D0D0D",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "活动"
+      },
+      {
+        "pagePath": "pages/game/index",
+        "text": "游戏"
+      },
+      {
+        "pagePath": "pages/records/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

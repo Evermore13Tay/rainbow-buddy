@@ -1,0 +1,57 @@
+<view class="page-shell" wx:if="{{summary}}">
+  <view class="hero">
+    <text class="hero-kicker">OPS CONSOLE</text>
+    <view class="hero-title">先把活动和人沉淀下来。</view>
+    <view class="hero-subtitle">
+      这是 MVP 阶段的轻量后台，用来观察活动供给、报名表现和用户分层，不做复杂 CRM。
+    </view>
+  </view>
+
+  <view class="metric-grid section">
+    <view class="glass-card metric-card">
+      <view class="metric-value">{{summary.eventCount}}</view>
+      <view class="metric-label">活动数</view>
+    </view>
+    <view class="glass-card metric-card">
+      <view class="metric-value">{{summary.signupCount}}</view>
+      <view class="metric-label">报名数</view>
+    </view>
+    <view class="glass-card metric-card">
+      <view class="metric-value">{{summary.activeLevel}}</view>
+      <view class="metric-label">当前用户等级</view>
+    </view>
+    <view class="glass-card metric-card">
+      <view class="metric-value">{{summary.city}}</view>
+      <view class="metric-label">主要城市</view>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">活动管理视图</view>
+    <view class="section-desc">目前先看供给和报名进度，后续再接创建、编辑、导出。</view>
+  </view>
+
+  <block wx:for="{{events}}" wx:key="id">
+    <view class="admin-card glass-card">
+      <view class="admin-title">{{item.title}}</view>
+      <view class="admin-meta">{{item.barName}} · {{item.dateText}} {{item.startTime}}</view>
+      <view class="admin-meta">已报名 {{item.joinedCount}} / {{item.capacity}}</view>
+      <view class="pill-row admin-tags">
+        <text class="pill" wx:for="{{item.tags}}" wx:key="*this">{{item}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view class="section">
+    <view class="section-title">用户分层样本</view>
+  </view>
+
+  <view class="admin-card glass-card" wx:if="{{user}}">
+    <view class="admin-title">{{user.nickname || '未填写昵称'}}</view>
+    <view class="admin-meta">{{user.city || '未填城市'}} · {{summary.activeLevel}}</view>
+    <view class="pill-row admin-tags">
+      <text class="pill" wx:for="{{user.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+    <view class="admin-meta admin-note">累计报名 {{records.length}} 场</view>
+  </view>
+</view>
