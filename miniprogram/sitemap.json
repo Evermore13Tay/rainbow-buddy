@@ -1,4 +1,9 @@
 {
   "desc": "彩虹搭子 sitemap",
-  "rules": []
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
 }

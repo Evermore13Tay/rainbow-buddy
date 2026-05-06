@@ -18,11 +18,24 @@
             "ignore": [],
             "disablePlugins": [],
             "outputPath": ""
-        }
+        },
+        "compileWorklet": false,
+        "uglifyFileName": false,
+        "uploadWithSourceMap": true,
+        "packNpmManually": false,
+        "packNpmRelationList": [],
+        "minifyWXSS": true,
+        "minifyWXML": true,
+        "localPlugins": false,
+        "disableUseStrict": false,
+        "useCompilerPlugins": false,
+        "condition": false,
+        "swc": false,
+        "disableSWC": true
     },
     "compileType": "miniprogram",
     "libVersion": "3.15.2",
-    "appid": "wx21f38591d123de8b",
+    "appid": "wx69216aa3bc5f6ae3",
     "projectname": "rainbow-buddy",
     "miniprogramRoot": "miniprogram/",
     "srcMiniprogramRoot": "miniprogram/",
@@ -30,5 +43,6 @@
     "editorSetting": {
         "tabIndent": "insertSpaces",
         "tabSize": 4
-    }
+    },
+    "simulatorPluginLibVersion": {}
 }

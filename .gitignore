@@ -6,3 +6,6 @@ dist/
 
 # WeChat DevTools local settings
 project.private.config.json
+
+# Local brainstorming/mockup previews
+.superpowers/

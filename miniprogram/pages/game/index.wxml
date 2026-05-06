@@ -1,36 +1,45 @@
 <view class="page-shell game-page">
-  <view class="hero">
-    <text class="hero-kicker">DRINKING GAME</text>
-    <view class="hero-title">点一个老头，看看今晚谁喝。</view>
+  <view class="game-bg game-bg-a"></view>
+  <view class="game-bg game-bg-b"></view>
+
+  <view class="hero game-hero">
+    <view class="hero-meta">
+      <text class="hero-kicker">DRINKING GAME</text>
+      <text class="hero-count">剩余 {{remainingCount}} / 16</text>
+    </view>
+    <view class="hero-title">WHO DRINKS?</view>
     <view class="hero-subtitle">
-      16 个里只有 1 个是真的。点到假的会爆一下或给你献花，点到真的，全场酒杯直接飞过来。
+      16 型 MBTI 老头里只有 1 个是真的。点错会消失，点中就被酒杯锁定。
+    </view>
+    <view class="game-rule-pill">
+      <view class="rule-item">
+        <text class="rule-label">点错</text>
+        <text class="rule-value">爆炸 / 献花</text>
+      </view>
+      <view class="rule-divider"></view>
+      <view class="rule-item">
+        <text class="rule-label">点中</text>
+        <text class="rule-value">全场开喝</text>
+      </view>
     </view>
   </view>
 
-  <view class="section">
-    <view class="section-title">规则很简单</view>
-    <view class="section-desc">轮流点，谁点中真的老头，谁喝。弹窗出现后点任意位置重新一局。</view>
+  <view class="game-toolbar">
+    <text>隐藏 1 个真老头</text>
+    <text>点中者喝酒</text>
   </view>
 
   <view class="game-grid">
     <block wx:for="{{cells}}" wx:key="id">
       <view
-        class="game-cell glass-card {{item.isRemoved ? 'removed' : ''}} {{item.isShaking ? 'shaking' : ''}} {{item.isClicked && item.isReal ? 'hit-real' : ''}}"
+        class="game-cell glass-card {{item.groupClass}} {{item.isRemoved ? 'removed' : ''}} {{item.isShaking ? 'shaking' : ''}} {{item.isClicked && item.isReal ? 'hit-real' : ''}}"
         data-index="{{index}}"
         bindtap="handleCellTap"
       >
+        <view class="cell-number">{{item.type}}</view>
+        <view class="meme-burst"></view>
         <view class="stage-glow"></view>
-        <view class="old-man-figure">
-          <view class="old-man-hair"></view>
-          <view class="old-man-head"></view>
-          <view class="old-man-jaw"></view>
-          <view class="old-man-glasses"></view>
-          <view class="old-man-body"></view>
-          <view class="old-man-jacket-shine"></view>
-          <view class="old-man-leg left"></view>
-          <view class="old-man-leg right"></view>
-          <view class="old-man-cane"></view>
-        </view>
+        <image class="mbti-icon" src="{{item.imageSrc}}" mode="aspectFit"></image>
         <view class="reaction-boom" wx:if="{{item.reaction === 'boom'}}">
           <view class="boom-core"></view>
           <view class="boom-ring"></view>
